@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Exercício Flexbox</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    min-height: 100vh;
+    background: #0f1e2c;
+    border-top: 4px solid #12a89a;
+    font-family: system-ui, sans-serif;
+  }
+
+  /* ===== Grade com os 8 quadrados ===== */
+  .grade {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .quadrado {
+    height: 150px;
+    padding: 12px;
+    background: #152f47;
+    border: 1px dashed #24425e;
+    border-radius: 8px;
+    display: flex;                 /* todo quadrado é um flex container */
+  }
+
+  /* ===== Caixinhas (cores do claro ao escuro) ===== */
+  .caixa {
+    width: 26px;
+    height: 26px;
+    border-radius: 5px;
+  }
+  .c1 { 
+    background: #8ecbff;
+     margin: 0;
+     padding: 0;
+    }
+  .c2 { background: #55a8ef; margin: 0;}
+  .c3 { background: #3a82cc; }
+  .c4 { background: #265f9f; }
+
+  /* ===== Quadrado 1: padrão (row, canto superior esquerdo) com espaço ===== */
+  .q1 { gap: 6px; align-items: flex-start; }
+
+  /* ===== Quadrado 2: ordem invertida na vertical, encostado à esquerda ===== */
+  .q2 { flex-direction: column-reverse; align-items: flex-start; }
+
+  /* ===== Quadrado 3: coluna, centralizada e espalhada ===== */
+  .q3 { flex-direction: column; align-items: center; justify-content: space-between; }
+
+  /* ===== Quadrado 4: centro absoluto ===== */
+  .q4 { justify-content: center; align-items: center; }
+
+  /* ===== Quadrado 5: embaixo, centralizado na horizontal ===== */
+  .q5 { justify-content: right; align-items: flex-end; }
+
+  /* ===== Quadrado 6: a segunda caixinha cresce e ocupa o espaço ===== */
+  .q6 { align-items: flex-start; }
+  .q6 .c2 { flex-grow: 3; }
+  .q6 .c1, .q6 .c3, .q6 .c4 { flex-grow: 1; }
+
+  /* ===== Quadrado 7: terceira caixinha destacada (branca) ===== */
+  .q7 { align-items: flex-start; }
+  .q7 .c3 { background: #ffffff; }
+
+ /* ===== Quadrado 8: duas linhas, cada uma com 2 caixas ===== */
+.q8 {
+  flex-direction: column;          /* empilha as duas divs (as "linhas") */
+  justify-content: space-between;
+}
+
+.q8 > div {
+  display: flex;                   /* cada linha vira um flex container */
+}
+
+.q8 .caixa {
+  width: 48%;
+  height: 46px;
+}
+
+  @media (max-width: 700px) {
+    .grade { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  .linha-colada {
+    flex-direction: row;
+  }
+</style>
+</head>
+<body>
+  <main class="grade">
+    <div class="quadrado q1"><div class="caixa c1"></div><div class="caixa c2"></div><div class="caixa c3"></div><div class="caixa c4"></div></div>
+    <div class="quadrado q2"><div class="caixa c1"></div><div class="caixa c2"></div><div class="caixa c3"></div><div class="caixa c4"></div></div>
+    <div class="quadrado q3"><div class="caixa c1"></div><div class="caixa c2"></div><div class="caixa c3"></div><div class="caixa c4"></div></div>
+    <div class="quadrado q4"><div class="caixa c1"></div><div class="caixa c2"></div><div class="caixa c3"></div><div class="caixa c4"></div></div>
+    <div class="quadrado q5"><div class="caixa c1"></div><div class="caixa c2"></div><div class="caixa c3"></div><div class="caixa c4"></div></div>
+    <div class="quadrado q6"><div class="caixa c1"></div><div class="caixa c2"></div><div class="caixa c3"></div><div class="caixa c4"></div></div>
+    <div class="quadrado q7"><div class="caixa c1"></div><div class="caixa c2"></div><div class="caixa c3"></div><div class="caixa c4"></div></div>
+    <div class="quadrado q8">
+        <div class="linha-colada">
+            <div class="caixa c1"></div><div class="caixa c2"></div>
+        </div>
+        <div class="linha-colada">
+            <div class="caixa c3"></div><div class="caixa c4"></div>
+        </div>
+    </div>
+  </main>
+</body>
+</html>
